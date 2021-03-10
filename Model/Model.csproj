@@ -56,6 +56,8 @@
     <Compile Include="Data\BrandRepo.cs" />
     <Compile Include="Data\Context.cs" />
     <Compile Include="Data\IDB.cs" />
+    <Compile Include="Data\ProductRepo.cs" />
+    <Compile Include="Data\UserRepo.cs" />
     <Compile Include="Migrations\202103081821212_RootDb.cs" />
     <Compile Include="Migrations\202103081821212_RootDb.designer.cs">
       <DependentUpon>202103081821212_RootDb.cs</DependentUpon>

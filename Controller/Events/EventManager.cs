@@ -17,7 +17,7 @@ namespace Controller.Events
 
         public static void ReadBrand(Brand brand)
         {
-            BrandReadEventArgs args = new BrandReadEventArgs(brand.ID, brand.Name);
+            BrandReadEventArgs args = new BrandReadEventArgs(brand, true);
             if (OnBrandRead != null)
             {
                 OnBrandRead.Invoke(args);
@@ -26,12 +26,8 @@ namespace Controller.Events
 
         public static void ReadProduct(Product product)
         {
-            ProductReadEventArgs args = new ProductReadEventArgs(
-                product.Barcode,
-                product.Name,
-                product.Quantity,
-                product.Price,
-                product.Brand.Name);
+            
+            ProductReadEventArgs args = new ProductReadEventArgs(product, true);
 
             if (OnProductRead != null)
             {
@@ -42,10 +38,7 @@ namespace Controller.Events
 
         public static void ReadUser(User user)
         {
-            UserReadEventArgs args = new UserReadEventArgs(
-                user.ID,
-                user.Name,
-                user.Age);
+            UserReadEventArgs args = new UserReadEventArgs(user, true);
 
             if(OnUserRead != null)
             {
