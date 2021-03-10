@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,11 +12,20 @@ namespace Controller.Events
     {
         public int ID { get;private set; }
         public string Name { get;private set; }
+        public ICollection<ProductReadEventArgs> Products { get; set; }
 
-        public BrandReadEventArgs(int iD, string name)
+        public BrandReadEventArgs(Brand brand, bool loadConnection = false)
         {
-            ID = iD;
-            Name = name;
+            ID = brand.ID;
+            Name = brand.Name;
+            if (loadConnection)
+            {
+                Products = new List<ProductReadEventArgs>();
+                foreach (Product item in brand.Products)
+                {
+                    Products.Add(new ProductReadEventArgs(item));
+                }
+            }
         }
 
         public override string ToString()

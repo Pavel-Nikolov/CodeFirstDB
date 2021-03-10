@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,15 +14,23 @@ namespace Controller.Events
         public string Name { get; private set; }
         public int Quantity { get; set; }
         public decimal Price { get; set; }
-        public string BrandName { get; set; }
+        public BrandReadEventArgs Brand { get; set; }
 
-        public ProductReadEventArgs(string barcode, string name, int quantity, decimal price, string brandName)
+        public ProductReadEventArgs(Product product, bool loadConnection = false)
         {
-            Barcode = barcode;
-            Name = name;
-            Quantity = quantity;
-            Price = price;
-            BrandName = brandName;
+            Barcode = product.Barcode;
+            Name = product.Name;
+            Quantity = product.Quantity;
+            Price = product.Price;
+            if (loadConnection)
+            {
+                Brand = new BrandReadEventArgs(product.Brand);
+            }
+        }
+
+        public override string ToString()
+        {
+            return $"Barcode: {Barcode}, Name: {Name}, Quantity: {Quantity}, Price: {Price:C}";
         }
     }
 }

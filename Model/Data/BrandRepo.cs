@@ -39,7 +39,7 @@ namespace Model.Data
         {
             using (Context context = new Context())
             {
-                return context.Brands.Where(x => x.Name == index).ToList();
+                return context.Brands.Include(p => p.Products).Where(x => x.Name == index).ToList();
             }
         }
 
@@ -48,7 +48,7 @@ namespace Model.Data
             Brand brandFromBb;
             using (Context context = new Context())
             {
-                brandFromBb = context.Brands.Find(key);
+                brandFromBb = context.Brands.Include(p => p.Products).Single(x => x.ID == key);
                 if (brandFromBb == null)
                 {
                     throw new ArgumentException("No Such Object");
@@ -62,7 +62,7 @@ namespace Model.Data
         {
             using (Context context = new Context())
             {
-                return context.Brands.ToList();
+                return context.Brands.Include(p => p.Products).ToList();
             }
         }
 
