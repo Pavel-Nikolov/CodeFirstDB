@@ -2,11 +2,7 @@
 using Controller.Events;
 using Model;
 using Model.Data;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Controller
 {
@@ -43,12 +39,7 @@ namespace Controller
         {
             switch (operationType)
             {
-                case OperationType.Create:
-                    //string[] ProductKeysToBeCreated = commandArgs
-                    //    .Skip(2)
-                    //    .Select(x => x.ToString())
-                    //    .ToArray();
-
+                case OperationType.Create:                  
                     string[] ProductKeysToBeCreated = commandArgs[2] as string[];
                     List<Product> products = new List<Product>();
                     if (ProductKeysToBeCreated != null)
@@ -167,7 +158,7 @@ namespace Controller
 
                 case OperationType.Delete:
                     string keyDel = commandArgs[0].ToString();
-                    productRepo.Read(keyDel);                    
+                    productRepo.Delete(keyDel);                    
                     break;
                 case OperationType.Find:
                     string index = commandArgs[0].ToString();
