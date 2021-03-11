@@ -2,10 +2,7 @@
 using Controller.Enums;
 using Controller.Events;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace View
 {
@@ -130,7 +127,7 @@ namespace View
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
-                    Console.WriteLine(ex.InnerException.Message);
+                    //Console.WriteLine(ex.InnerException.Message);
                 }
                 finally
                 {
