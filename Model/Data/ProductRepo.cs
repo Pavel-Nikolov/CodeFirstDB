@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model.Data
 {
@@ -74,7 +72,9 @@ namespace Model.Data
             using (Context context = new Context())
             {
                 item.Brand = context.Brands.Find(item.Brand.ID);
-                context.Entry<Product>(item).State = EntityState.Modified;
+                Product productFromDb = context.Products.Include(p => p.Brand).Single(x => x.Barcode == item.Barcode);
+                context.Entry<Product>(productFromDb).CurrentValues.SetValues(item);
+                productFromDb.Brand = item.Brand;
                 context.SaveChanges();
             }
         }
