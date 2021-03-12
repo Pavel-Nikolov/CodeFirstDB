@@ -75,10 +75,6 @@ namespace Model.Data
                     }
                 }
                 item.Products = products;
-                //context.Users.Attach(item);
-                //context.Entry<User>(item).Collection(p => p.Products).Load();
-                //context.Entry<User>(item).State = EntityState.Modified;
-                //context.SaveChanges();
 
                 User userFromDb = context.Users.Include(p => p.Products).Single(x => x.ID == item.ID);
                 context.Entry<User>(userFromDb).CurrentValues.SetValues(item);
